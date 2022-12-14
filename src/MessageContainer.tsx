@@ -191,22 +191,11 @@ export default class MessageContainer<
 
   detachKeyboardListeners = () => {
     const { invertibleScrollViewProps: invertibleProps } = this.props
-    Keyboard.removeListener(
-      'keyboardWillShow',
-      invertibleProps.onKeyboardWillShow,
-    )
-    Keyboard.removeListener(
-      'keyboardDidShow',
-      invertibleProps.onKeyboardDidShow,
-    )
-    Keyboard.removeListener(
-      'keyboardWillHide',
-      invertibleProps.onKeyboardWillHide,
-    )
-    Keyboard.removeListener(
-      'keyboardDidHide',
-      invertibleProps.onKeyboardDidHide,
-    )
+    
+    Keyboard.addListener('keyboardWillShow', invertibleProps.onKeyboardWillShow).remove();
+    Keyboard.addListener('keyboardDidShow', invertibleProps.onKeyboardDidShow).remove();
+    Keyboard.addListener('keyboardWillHide', invertibleProps.onKeyboardWillHide).remove();
+    Keyboard.addListener('keyboardDidHide', invertibleProps.onKeyboardDidHide).remove();
   }
 
   renderTypingIndicator = () => {
